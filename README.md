@@ -2,7 +2,7 @@
 
 **Author:** Dushimimana Fabrice  
 **Date:** October 17, 2025  
-**GitHub Repository:** [Link to GitHub Repo](https://github.com/Fabrice-Dush/BlogsFrontend)
+**GitHub Repository:** [Link to GitHub Repo](https://github.com/Fabrice-Dush/BlogFrontend)
 
 ---
 
