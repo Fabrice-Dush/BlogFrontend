@@ -17,13 +17,13 @@ function UpdateBlog() {
       event.preventDefault();
       setIsLoading(true);
 
-      const formData = Object.fromEntries([...new FormData(event.target)]);
-      formData.image = `img/${formData.image.name}`;
+      const formData = new FormData(event.target);
+      const obj = Object.fromEntries([...formData]);
+      formData.append("image", obj.image.name);
 
       const res = await fetch(`${url}/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: formData,
       });
 
       const data = await res.json();

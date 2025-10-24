@@ -83,7 +83,7 @@ function Blog() {
             </div>
             <div className="Blog__author__right">
               <Link
-                to={`/blogs/update/${blog.id}`}
+                to={`/blogs/update/${blog._id}`}
                 className="btn btn--md btn--green"
               >
                 Update Blog
@@ -97,11 +97,7 @@ function Blog() {
               </a>
             </div>
           </header>
-          <img
-            src={`../${blog.image}`}
-            alt={blog.title}
-            className="Blog__img"
-          />
+          <img src={blog.image} alt={blog.title} className="Blog__img" />
           <div className="Blog__content">
             <p className="Blog__title Blog__title__page">{blog.title}</p>
             <p className="Blog__description">{blog.description}</p>

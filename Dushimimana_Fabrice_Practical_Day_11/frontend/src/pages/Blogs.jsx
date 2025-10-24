@@ -71,7 +71,7 @@ function Blogs() {
 function Blog({ blog }) {
   return (
     <article className={`blog blog--${blog.id + 1}`}>
-      <img src={`../${blog.image}`} alt={blog.title} className="blog__img" />
+      <img src={blog.image} alt={blog.title} className="blog__img" />
       <div className="blog__content">
         <div className="blog__header">
           <p className="blog__date">{new Date(blog.date).toDateString()}</p>
