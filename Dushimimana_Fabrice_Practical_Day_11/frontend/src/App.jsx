@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const url = "http://localhost:8000/api/v1/blogs";
+export const url = "https://blogbackend-f35b.onrender.com/api/v1/blogs";
 
 function App() {
   return (
