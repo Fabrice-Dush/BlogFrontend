@@ -67,7 +67,7 @@ function Blog() {
               <div className="Blog__author">
                 <div className="Blog__author__img__box">
                   <img
-                    src={`../${blog.authorImage}`}
+                    src="https://mockmind-api.uifaces.co/content/human/30.jpg"
                     alt={`Photo of ${blog.author}`}
                     className="Blog__author__img"
                   />
@@ -122,6 +122,38 @@ function Blog() {
                 <p className="Blog__description">{blog.description}</p>
               </>
             )}
+            <div className="like__container">
+              <div className="like__el" style={{ display: "none" }}>
+                <ion-icon name="heart-outline" className="like"></ion-icon>
+              </div>
+              <div className="like__el">
+                <ion-icon name="heart" className="like"></ion-icon>
+                <p className="like__text">5</p>
+              </div>
+            </div>
+            <form className="form form--comment">
+              <div className="form__group">
+                <input
+                  type="text"
+                  placeholder="Comment..."
+                  className="form__input"
+                />
+                <button className="btn btn--small btn--green">Comment</button>
+              </div>
+            </form>
+
+            <div className="comments">
+              <div className="comment">
+                <img src="../img/face1.jpg" className="comment__img" />
+                <p className="comment__email">@dushimimana@gmail.com</p>
+                <p className="comment__text">This is awesome stuff</p>
+              </div>
+              <div className="comment">
+                <img src="../img/face2.jpg" className="comment__img" />
+                <p className="comment__email">@dushimimana@gmail.com</p>
+                <p className="comment__text">This is awesome stuff</p>
+              </div>
+            </div>
           </div>
         </article>
       )}

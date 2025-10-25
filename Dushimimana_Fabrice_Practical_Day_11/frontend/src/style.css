@@ -935,6 +935,8 @@ body {
   }
 
   .form {
+    display: flex;
+    flex-direction: column;
     grid-template-columns: 1fr;
   }
 
@@ -1096,4 +1098,150 @@ body {
   .footer > p {
     font-size: 1.4rem;
   }
+}
+
+.form--login {
+  width: 50rem;
+  margin: 4.8rem auto;
+  padding: 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  font-family: inherit;
+  border-radius: 0.4rem;
+  background-color: #fff;
+}
+
+.form--login > .form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form--login .form__label {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #777;
+}
+
+.form--login .form__input {
+  border: none;
+  outline: none;
+  padding: 1.2rem 2.4rem;
+  font-family: inherit;
+  background-color: #f1f1f1;
+  border-radius: 0.4rem;
+}
+
+.btn--submit {
+  background-color: #007af3;
+  color: #fff;
+  align-self: flex-start;
+
+  padding: 1.2rem 4.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.like__container {
+  margin-top: 7.2rem;
+}
+
+.form--comment {
+  background-color: #fff;
+  padding: 4.8rem;
+  border-radius: 0.4rem;
+  margin-bottom: 5rem;
+  margin-top: 1.2rem;
+}
+
+.form--comment .form__input {
+  width: 100%;
+  display: inline-block;
+  padding: 1.2rem 3.2rem;
+  margin-bottom: 2.4rem;
+  border-radius: 0.4rem;
+  border: none;
+  outline: none;
+  background-color: #f1f1f1;
+}
+
+.form--comment .btn {
+  padding: 1.2rem;
+}
+
+.form__additional {
+  font-size: 1.4rem;
+  color: #444;
+}
+
+.form__additional a:link,
+.form__additional a:visited {
+  text-decoration: none;
+  color: #12b886;
+  font-weight: 600;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.comment {
+  /* width: ; */
+  display: grid;
+  column-gap: 1.2rem;
+  grid-template-columns: auto 1fr;
+}
+
+.comment__img {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  grid-row: 1 / span 2;
+}
+
+.comment__email {
+  align-self: end;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.comment__text {
+  color: #333;
+  font-size: 2rem;
+  grid-column: 2;
+}
+
+.like {
+  font-size: 5rem;
+  width: 5rem;
+}
+
+.like__el {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-size: 3.2rem;
+  color: #d6336c;
+  cursor: pointer;
+}
+
+.like__text {
+  font-size: 2rem;
+  color: #444;
+}
+
+.user__container {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background-color: #007af3;
+  font-size: 2.4rem;
+  color: #444;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

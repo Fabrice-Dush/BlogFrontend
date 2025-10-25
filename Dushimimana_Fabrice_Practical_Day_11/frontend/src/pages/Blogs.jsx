@@ -82,7 +82,7 @@ function Blog({ blog }) {
         <p className="blog__text">{blog.summary}</p>
         <div className="blog__owner">
           <img
-            src={`../${blog.authorImage}`}
+            src="https://mockmind-api.uifaces.co/content/human/30.jpg"
             alt="Blog writer image"
             className="blog__owner-img"
           />

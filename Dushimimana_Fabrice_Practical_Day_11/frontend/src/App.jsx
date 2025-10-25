@@ -7,8 +7,11 @@ import PageNav from "./components/PageNav";
 import Footer from "./components/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
-export const url = "https://blogbackend-f35b.onrender.com/api/v1/blogs";
+// export const url = "https://blogbackend-f35b.onrender.com/api/v1/blogs";
+export const url = "http://localhost:8000/api/v1/blogs";
 
 function App() {
   return (
@@ -22,6 +25,8 @@ function App() {
           <Route path="/blogs/create/" element={<CreateBlog />} />
           <Route path="/blogs/:id" element={<Blog />} />
           <Route path="/blogs/update/:id" element={<UpdateBlog />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
         <Footer />
       </BrowserRouter>

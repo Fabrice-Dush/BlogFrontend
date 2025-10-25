@@ -20,6 +20,14 @@ function PageNav() {
               Create post
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/login" className="nav__link">
+              Login
+            </NavLink>
+          </li>
+          <li>
+            <div className="user__container">DF</div>
+          </li>
         </ul>
       </nav>
       <button className="menu__btn">
