@@ -39,6 +39,7 @@ function Signup() {
       toast.success(data.message);
       setIsLoading(false);
     } catch (err) {
+      console.log(err);
       setIsLoading(false);
       toast.error(err.message);
     }
