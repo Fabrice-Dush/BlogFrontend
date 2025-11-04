@@ -64,7 +64,7 @@ function Login({ setUser }) {
           Password
         </label>
         <input
-          type="text"
+          type="password"
           name="password"
           autoComplete="on"
           placeholder="........"

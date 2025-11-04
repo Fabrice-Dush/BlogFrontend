@@ -82,7 +82,7 @@ function Signup() {
           Password
         </label>
         <input
-          type="text"
+          type="password"
           name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -96,7 +96,7 @@ function Signup() {
           Confirm Password
         </label>
         <input
-          type="text"
+          type="password"
           name="passwordConfirm"
           value={passwordConfirm}
           onChange={(e) => setPasswordConfirm(e.target.value)}
