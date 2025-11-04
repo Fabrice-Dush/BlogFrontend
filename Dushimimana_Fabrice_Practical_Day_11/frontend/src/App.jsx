@@ -13,9 +13,9 @@ import Signup from "./pages/Signup";
 import EmailVerification from "./pages/EmailVerification";
 import { useState } from "react";
 import Logout from "./pages/Logout";
-import ForgotPassword from "./pages/forgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
+import ForgotPassword from "./pages/ForgotPassword";
 
 export const TIMEOUT_SEC = 20;
 // export const url = "http://localhost:8000/api/v1";
