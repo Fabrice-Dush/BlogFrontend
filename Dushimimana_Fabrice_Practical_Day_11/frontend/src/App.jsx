@@ -20,7 +20,7 @@ import NotFound from "./pages/NotFound";
 import ForgotPassword from "./pages/ForgotPassword";
 
 export const TIMEOUT_SEC = 20;
-// export const url = "http://localhost:8000/api/v1";
+export const url = "http://localhost:8000/api/v1";
 // export const url = "https://blogbackend-f35b.onrender.com/api/v1";
 
 function App() {
