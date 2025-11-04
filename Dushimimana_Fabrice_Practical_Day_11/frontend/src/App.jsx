@@ -15,6 +15,8 @@ import { useState } from "react";
 import Logout from "./pages/Logout";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
+
+//!Remember to change this before pushing to github
 import ForgotPassword from "./pages/ForgotPassword";
 
 export const TIMEOUT_SEC = 20;
