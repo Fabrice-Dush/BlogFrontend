@@ -1,41 +1,28 @@
 /* eslint-disable */
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { url } from "../App";
 import { toast } from "react-toastify";
 
-function Login({ setUser }) {
-  const navigate = useNavigate();
+function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async function (event) {
     try {
       event.preventDefault();
-      if (!email.trim() || !password.trim()) return;
+      if (!email.trim()) return;
 
       setIsLoading(true);
-      const res = await fetch(`${url}/users/login`, {
+      const res = await fetch(`${url}/users/forgotPassword`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email }),
       });
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
-
-      const user = { user: data.data.user, token: data.token };
-
       setIsLoading(false);
-      setUser(user);
-      localStorage.setItem("user", JSON.stringify(user));
-
       toast.success(data.message);
-
-      setTimeout(() => {
-        navigate("/");
-      }, 2500);
     } catch (err) {
       setIsLoading(false);
       toast.error(err.message);
@@ -46,50 +33,29 @@ function Login({ setUser }) {
     <form className="form form--login" onSubmit={handleSubmit}>
       <div className="form__group">
         <label htmlFor="email" className="form__label">
-          Email
+          Your email
         </label>
         <input
           type="email"
           name="email"
-          className="form__input"
-          autoComplete="on"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="example@email.com"
-          required
-        />
-      </div>
-      <div className="form__group">
-        <label htmlFor="password" className="form__label">
-          Password
-        </label>
-        <input
-          type="text"
-          name="password"
           autoComplete="on"
-          placeholder="........"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          placeholder="me@example.com"
           className="form__input"
           required
         />
-        <Link to="/forgotPassword" className="form__forgot">
-          Forgot your password ?
-        </Link>
       </div>
       <div className="form__group">
         <button
           className={`btn btn--submit${isLoading ? " loading" : ""}`}
           disabled={isLoading}
         >
-          {isLoading ? "Logging in..." : "Login"}
+          {isLoading ? "sending..." : "send"}
         </button>
-        <p className="form__additional">
-          Don't have an account ?<Link to="/signup"> Signup here</Link>
-        </p>
       </div>
     </form>
   );
 }
 
-export default Login;
+export default ForgotPassword;

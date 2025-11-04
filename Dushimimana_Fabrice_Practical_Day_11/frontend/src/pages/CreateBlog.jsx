@@ -1,10 +1,11 @@
+/*eslint-disable */
+
 import { useNavigate } from "react-router-dom";
 import { url } from "../App";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { PulseLoader } from "react-spinners";
 
-function CreateBlog() {
+function CreateBlog({ user }) {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,14 +18,14 @@ function CreateBlog() {
       const obj = Object.fromEntries([...formData]);
       formData.append("image", obj.image.name);
 
-      const res = await fetch(url, {
+      const res = await fetch(`${url}/blogs`, {
         method: "POST",
+        headers: { authorization: `Bearer ${user.token}` },
         body: formData,
       });
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.message);
-      console.log(data);
 
       //? success message
       setIsLoading(false);
@@ -42,7 +43,6 @@ function CreateBlog() {
   return (
     <section className="section-cta">
       <form className="Form" onSubmit={handleSubmit}>
-        <p className="Form__title">Create a new blog here</p>
         <div className="Form__group">
           <label htmlFor="image">Image</label>
           <input
@@ -83,9 +83,11 @@ function CreateBlog() {
             required
           ></textarea>
         </div>
-        <button className="btn btn--big btn--green">
-          Save Blog{" "}
-          {<PulseLoader color="#000c18" loading={isLoading} size={10} />}
+        <button
+          className={`btn btn--big btn--full${isLoading ? " loading" : ""}`}
+          disabled={isLoading}
+        >
+          {isLoading ? "Saving blog..." : "Save Blog"}
         </button>
       </form>
     </section>

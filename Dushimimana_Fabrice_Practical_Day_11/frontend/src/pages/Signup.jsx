@@ -1,9 +1,51 @@
-/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable */
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { url } from "../App";
+import { toast } from "react-toastify";
 
 function Signup() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [user, setUser] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async function (event) {
+    try {
+      event.preventDefault();
+
+      if (
+        !name.trim() ||
+        !email.trim() ||
+        !password.trim() ||
+        !passwordConfirm.trim()
+      )
+        return;
+
+      setIsLoading(true);
+
+      const res = await fetch(`${url}/users/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password, passwordConfirm }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message);
+
+      toast.success(data.message);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      toast.error(err.message);
+    }
+  };
+
   return (
-    <form className="form form--login">
+    <form className="form form--login" onSubmit={handleSubmit}>
       <div className="form__group">
         <label htmlFor="fullname" className="form__label">
           Fullname
@@ -11,6 +53,8 @@ function Signup() {
         <input
           type="text"
           name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           className="form__input"
           autoComplete="on"
           placeholder="Dios Ella"
@@ -24,6 +68,8 @@ function Signup() {
         <input
           type="email"
           name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="form__input"
           autoComplete="on"
           placeholder="example@email.com"
@@ -35,8 +81,10 @@ function Signup() {
           Password
         </label>
         <input
-          type="password"
+          type="text"
           name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="........"
           className="form__input"
           required
@@ -47,15 +95,22 @@ function Signup() {
           Confirm Password
         </label>
         <input
-          type="password"
+          type="text"
           name="passwordConfirm"
+          value={passwordConfirm}
+          onChange={(e) => setPasswordConfirm(e.target.value)}
           placeholder="........"
           className="form__input"
           required
         />
       </div>
       <div className="form__group">
-        <button className="btn btn--submit">Signup</button>
+        <button
+          className={`btn btn--submit${isLoading ? " loading" : ""}`}
+          disabled={isLoading}
+        >
+          {isLoading ? `Signing up...` : "Signup"}
+        </button>
         <p className="form__additional">
           Already have an account ? <Link to="/login">Login here</Link>
         </p>

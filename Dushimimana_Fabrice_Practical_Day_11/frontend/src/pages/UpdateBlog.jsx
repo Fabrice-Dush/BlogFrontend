@@ -1,11 +1,10 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable*/
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { url } from "../App";
 import { toast } from "react-toastify";
-import { PulseLoader } from "react-spinners";
 
-function UpdateBlog() {
+function UpdateBlog({ user }) {
   const [blog, setBlog] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,8 +20,9 @@ function UpdateBlog() {
       const obj = Object.fromEntries([...formData]);
       formData.append("image", obj.image.name);
 
-      const res = await fetch(`${url}/${id}`, {
+      const res = await fetch(`${url}/blogs/${id}`, {
         method: "PUT",
+        headers: { authorization: `Bearer ${user.token}` },
         body: formData,
       });
 
@@ -46,9 +46,9 @@ function UpdateBlog() {
     function () {
       const fetchBlog = async function () {
         try {
-          const res = await fetch(`${url}/${id}`);
+          const res = await fetch(`${url}/blogs/${id}`);
           const data = await res.json();
-          setBlog(data.data.blog);
+          setBlog(data.data?.blog);
         } catch (err) {
           console.error(`⛔⛔ ${err}`);
         }
@@ -61,7 +61,6 @@ function UpdateBlog() {
   return (
     <section className="section-cta">
       <form className="Form" onSubmit={handleSubmit}>
-        <p className="Form__title">Update a blog here</p>
         <div className="Form__group">
           <label htmlFor="image">Image</label>
           <input type="file" name="image" id="image" className="Form__input" />
@@ -99,9 +98,11 @@ function UpdateBlog() {
             required
           ></textarea>
         </div>
-        <button className="btn btn--big btn--green">
-          Save Blog{" "}
-          {<PulseLoader color="#000c18" loading={isLoading} size={10} />}
+        <button
+          className={`btn btn--big btn--full${isLoading ? " loading" : ""}`}
+          disabled={isLoading}
+        >
+          {isLoading ? "Updating Blog..." : "Update Blog"}
         </button>
       </form>
     </section>

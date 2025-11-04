@@ -1,14 +1,13 @@
-/* eslint-disable no-empty */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable  */
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { url } from "../App";
+import { TIMEOUT_SEC, url } from "../App";
 import Spinner from "../components/Spinner";
+import timeout from "../utils/timeout";
+import { toast } from "react-toastify";
 
-function Blogs() {
+function Blogs({ user }) {
   const [blogs, setBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -19,7 +18,10 @@ function Blogs() {
         setIsLoading(true);
         setError("");
 
-        const res = await fetch(url);
+        const res = await Promise.race([
+          fetch(`${url}/blogs`),
+          timeout(TIMEOUT_SEC),
+        ]);
         const data = await res.json();
         if (!res.ok) throw new Error(data.message);
 
@@ -28,7 +30,8 @@ function Blogs() {
       } catch (err) {
         setIsLoading(false);
         setError(err);
-        console.error(`⛔⛔${err}`);
+        toast.error(err.message);
+        console.error(`⛔⛔ ${err}`);
       }
     };
     fetchBlogs();
@@ -48,14 +51,15 @@ function Blogs() {
           </p>
         </div>
         <div className="blogs__right">
-          <Link to="/blogs/create" className="blogs__link">
-            Create a new blog
-          </Link>
+          {user && (
+            <Link to="/blogs/create" className="blogs__link">
+              Create a new blog
+            </Link>
+          )}
         </div>
       </div>
       <div className="container blogs">
         {isLoading && <Spinner />}
-        {error && <p className="error">error</p>}
         {!isLoading &&
           !error &&
           blogs.length > 0 &&
@@ -82,11 +86,11 @@ function Blog({ blog }) {
         <p className="blog__text">{blog.summary}</p>
         <div className="blog__owner">
           <img
-            src="https://mockmind-api.uifaces.co/content/human/30.jpg"
+            src="https://e7.pngegg.com/pngimages/84/165/png-clipart-united-states-avatar-organization-information-user-avatar-service-computer-wallpaper-thumbnail.png"
             alt="Blog writer image"
             className="blog__owner-img"
           />
-          <p className="blog__owner-name">{blog.author}</p>
+          <p className="blog__owner-name">{blog.user.name}</p>
         </div>
         <div className="blog__bottom">
           <p className="blog__tag">{blog.tags.at(0)}</p>

@@ -1,10 +1,10 @@
-// import { Link, NavLink } from "react-router-dom";
+/* eslint-disable */
 
 import { Link, NavLink } from "react-router-dom";
 
-function PageNav() {
+function PageNav({ user }) {
   return (
-    <header className="header">
+    <header className={`header ${user && "user"}`}>
       <Link to="/blogs" className="logo">
         TechBlog
       </Link>
@@ -21,13 +21,25 @@ function PageNav() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/login" className="nav__link">
-              Login
-            </NavLink>
+            {user ? (
+              <NavLink to="/logout" className="nav__link">
+                Logout
+              </NavLink>
+            ) : (
+              <NavLink to="/login" className="nav__link">
+                Login
+              </NavLink>
+            )}
           </li>
-          <li>
-            <div className="user__container">DF</div>
-          </li>
+          {user && (
+            <div className="user__container">
+              {user.user.name
+                .toUpperCase()
+                .split(" ")
+                .map((name) => name[0])
+                .join("")}
+            </div>
+          )}
         </ul>
       </nav>
       <button className="menu__btn">
