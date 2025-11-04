@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable */
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Blogs from "./pages/Blogs";
 import CreateBlog from "./pages/CreateBlog";
