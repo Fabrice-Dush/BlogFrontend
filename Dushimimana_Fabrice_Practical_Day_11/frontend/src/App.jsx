@@ -19,7 +19,7 @@ import NotFound from "./pages/NotFound";
 //!Remember to change this before pushing to github
 import ForgotPassword from "./pages/ForgotPassword";
 
-export const TIMEOUT_SEC = 20;
+export const TIMEOUT_SEC = 120;
 // export const url = "http://localhost:8000/api/v1";
 export const url = "https://blogbackend-f35b.onrender.com/api/v1";
 

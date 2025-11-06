@@ -1118,9 +1118,17 @@ body {
 }
 
 .form--login > .form__group {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.svg {
+  position: absolute;
+  transform: translateY(110%);
+  right: 3%;
+  cursor: pointer;
 }
 
 .form--login .form__label {
@@ -1136,6 +1144,7 @@ body {
   font-family: inherit;
   background-color: #f1f1f1;
   border-radius: 0.4rem;
+  position: relative;
 }
 
 .btn--submit {

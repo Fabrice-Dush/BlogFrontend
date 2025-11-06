@@ -1,14 +1,20 @@
 /* eslint-disable */
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { url } from "../App";
 import { toast } from "react-toastify";
+import Svg from "../components/Svg";
 
 function Login({ setUser }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [type, setType] = useState("password");
+
+  const handleSetType = function () {
+    setType((type) => (type === "text" ? "password" : "text"));
+  };
 
   const handleSubmit = async function (event) {
     try {
@@ -64,7 +70,7 @@ function Login({ setUser }) {
           Password
         </label>
         <input
-          type="password"
+          type={type}
           name="password"
           autoComplete="on"
           placeholder="........"
@@ -73,6 +79,8 @@ function Login({ setUser }) {
           className="form__input"
           required
         />
+        <Svg type={type} onClick={handleSetType} />
+
         <Link to="/forgotPassword" className="form__forgot">
           Forgot your password ?
         </Link>

@@ -3,14 +3,26 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { url } from "../App";
 import { toast } from "react-toastify";
+import Svg from "../components/Svg";
 
 function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [type, setType] = useState("password");
+  const [typeConfirm, setTypeConfirm] = useState("password");
+
+  const handleSetType = function () {
+    setType((type) => (type === "text" ? "password" : "text"));
+  };
+
+  const handleSetTypeConfirm = function () {
+    setTypeConfirm((typeConfirm) =>
+      typeConfirm === "text" ? "password" : "text"
+    );
+  };
 
   const handleSubmit = async function (event) {
     try {
@@ -82,7 +94,7 @@ function Signup() {
           Password
         </label>
         <input
-          type="password"
+          type={type}
           name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -90,13 +102,14 @@ function Signup() {
           className="form__input"
           required
         />
+        <Svg type={type} onClick={handleSetType} />
       </div>
       <div className="form__group">
         <label htmlFor="passwordConfirm" className="form__label">
           Confirm Password
         </label>
         <input
-          type="password"
+          type={typeConfirm}
           name="passwordConfirm"
           value={passwordConfirm}
           onChange={(e) => setPasswordConfirm(e.target.value)}
@@ -104,6 +117,7 @@ function Signup() {
           className="form__input"
           required
         />
+        <Svg type={typeConfirm} onClick={handleSetTypeConfirm} />
       </div>
       <div className="form__group">
         <button
